@@ -1,0 +1,109 @@
+/* CSS Importation des polices */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,500,700,900');
+
+/* CSS Configuration de base page HTML  */
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #1cb7be;
+	font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+.flip-horizontal-bottom {
+    -webkit-animation: flip-horizontal-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: flip-horizontal-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+@-webkit-keyframes flip-horizontal-bottom {
+    0% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+    }
+    50% {
+        -webkit-transform: rotateX(-180deg);
+        transform: rotateX(-180deg);
+    }
+    100% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+    }
+}
+@keyframes flip-horizontal-bottom {
+    0% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+    }
+    50% {
+        -webkit-transform: rotateX(-180deg);
+        transform: rotateX(-180deg);
+    }
+    100% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+    }
+}
+
+
+div.box-question{
+
+    background-color: #f49527;
+    width: 25em;
+    height: 25em;
+    margin: auto;
+    box-shadow: -2em 2em 5px #b90d49;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    margin-top: 10vw;
+}
+
+div.box-question div.box {
+    background-color: greenyellow;
+    height: 75%;
+    width: 75%;
+}
+
+div.box-question div.head {
+    height: 50%;
+    margin: auto;
+    padding: 20px;
+    color: #106368;
+}
+
+div.box-question div.foot{
+    background-color: blue;
+    height: 50%;
+    margin: auto;
+    align-items: flex-end;
+}
+
+div.box-question div.rep{
+    height: 100%;
+    margin: auto;
+    background-color: red;
+    transition: 0.3s ease-in-out;
+}
+
+/* div.box-question div.rep button{
+    background-color: #1cb7be;
+    border: none;
+    width: 90%;
+    height: 90%;
+    transition: 0.3s ease-in-out;
+} */
+
+div.box-question div.rep button:hover{
+    background-color: #106368;
+}
+
+div.box-question div.rep:hover{
+    width: 90%;
+}

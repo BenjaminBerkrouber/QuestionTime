@@ -4,13 +4,14 @@ function logUser($usermail, $userpass)
 {
     $usermailVerified = htmlspecialchars($usermail);
     $userpassVerified = htmlspecialchars($userpass);
-    $userpassVerified = sha1($userpassVerified);
+    $userpassEnc = sha1($userpassVerified);
+
     $results = executeRequest
     (
         "SELECT * FROM users WHERE usermail = ? AND password = ?",
         [
             $usermailVerified,
-            $userpassVerified
+            $userpassEnc
         ]
     );
 
@@ -75,13 +76,15 @@ function addUser($username,$usermail,$userpass,$userpass2)
     if ($results->rowCount() === 1)
     {
         $error = "Adresse mail déjà utiliser";
+    }else{
+        addUserValidate($username, $usermail ,$userpassEnc);
+
+        logUser($usermail, $userpass);
     }
 
     if(isset($error)){echo $error;}
 
-    addUserValidate($username, $userpassEnc, $usermail);
 
-    logUser($usermail, $userpass);
 
 }
 
