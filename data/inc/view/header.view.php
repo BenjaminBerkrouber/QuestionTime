@@ -10,8 +10,7 @@
         </div>
     <?php } else{ ?>
         <div>
-            <button>log</button>
-            <button>reg</button>
+            <a href="user.php">log</a>
         </div>
     <?php } ?>
     

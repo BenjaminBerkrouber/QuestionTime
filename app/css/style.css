@@ -52,7 +52,6 @@ body{
 
 
 div.box-question{
-
     background-color: #f49527;
     width: 25em;
     height: 25em;
@@ -62,48 +61,68 @@ div.box-question{
     display: flex;
     justify-content: center;
     align-items: center ;
-    margin-top: 10vw;
+    margin-top: 5vw;
 }
 
 div.box-question div.box {
-    background-color: greenyellow;
-    height: 75%;
-    width: 75%;
+    height: 80%;
+    width: 80%;
+    display: inline;
+    align-items: flex-end;
 }
 
 div.box-question div.head {
-    height: 50%;
+    height: 40%;
     margin: auto;
     padding: 20px;
-    color: #106368;
+    color: #024144;
+    border-bottom: black solid;
 }
 
 div.box-question div.foot{
-    background-color: blue;
     height: 50%;
+    width: 100%;
+    margin-top: 20px;
     margin: auto;
     align-items: flex-end;
 }
 
-div.box-question div.rep{
+div.box-question div.foot form {
     height: 100%;
-    margin: auto;
-    background-color: red;
-    transition: 0.3s ease-in-out;
 }
 
-/* div.box-question div.rep button{
-    background-color: #1cb7be;
+div.box-question div.rep{
+    height: 40%;
+    width: 100%;
+    transition: 0.3s ease-in-out;
+    margin-bottom: 30px;
+    display: flex;
+    margin-top: 30px;
+}
+
+div.box-question div#red{
+    justify-content: flex-end;
+    color: red;
+}
+
+div.box-question div.rep button{
+    background-color: #106368;
+    font-size: 20px;
+    color: white;
     border: none;
-    width: 90%;
+    width: 60%;
     height: 90%;
     transition: 0.3s ease-in-out;
-} */
-
-div.box-question div.rep button:hover{
-    background-color: #106368;
+    border-radius: 20px;
 }
 
-div.box-question div.rep:hover{
-    width: 90%;
+div.box-question div#red button{
+    background-color: red;
+}
+
+
+div.box-question div.rep button:hover{
+    width: 70%;
+    height: 100%;
+    font-size: 22px;
 }

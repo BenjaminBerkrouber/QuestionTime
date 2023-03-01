@@ -15,8 +15,10 @@ function logUser($usermail, $userpass)
         ]
     );
 
+    echo "enter";
     if ($results->rowCount() === 1)
     {
+        echo "yesy";
         $userinfo = $results->fetch();
         $_SESSION['id'] = $userinfo['id'];
         $_SESSION['username'] = $userinfo['usermail'];

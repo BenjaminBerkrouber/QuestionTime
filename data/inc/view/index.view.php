@@ -1,23 +1,17 @@
 <section>
-
     <div class="flip-horizontal-bottom box-question">
         <div class="box">
-            <div class="head">
-                <h3><?= $question['libelle']?></h3>
-            </div>
+            <div class="head"><h3><?= $question['libelle']?></h3></div>
             <div class="foot">
                 <form action="">
-                    <?php 
-                        foreach ($reponses as $reponse) { ?>
-                            <div class="rep">
-                                <button><?= $reponse['libelle'] ?></button>
-                            </div>
-                        <?php }
-                    ?>
+                    <?php foreach ($reponses as $reponse) { ?>
+                        <div class="rep" <?php if((int)$reponse['id_reponse'] %2 == 0){ ?> id="red" <?php }?>>
+                            <button>
+                                <?= $reponse['libelle'] ?> </button>
+                        </div>
+                    <?php } ?>
                 </form>
-            </div>  
+            </div>
         </div>
-
     </div>
-
 </section>

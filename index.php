@@ -3,12 +3,15 @@
 include('app/php/config.php');
 include('app/php/functions/question.php');
 include('app/php/functions/security/user.php');
+session_start();
+
 
 //addUser('benjamin','benjamin2.berkrouber@gmail.com','password', 'password' );
-
 $userinfo = logUser('benjamin.berkrouber@gmail.com', 'password');
 $question = get_question();
 $reponses = get_reponse($question['id_question']);
+
+
 //logout();
 
 ?>
@@ -25,7 +28,6 @@ $reponses = get_reponse($question['id_question']);
     <link rel="stylesheet" href="app/css/style.css">
 </head>
 <body>
-
 <?php
 
 include($_SERVER['DOCUMENT_ROOT']."/data/inc/header.php");

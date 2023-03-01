@@ -45,7 +45,7 @@ CREATE TABLE ligne_reponse(
     FOREIGN KEY (id_reponse) REFERENCES reponse(id_reponse)
 );*/
 
-INSERT INTO users (username, usermail, password) VALUES ('Benjamin', 'benjamim.berkrouber@gmail.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
+INSERT INTO users (username, usermail, password) VALUES ('Benjamin', 'benjamin.berkrouber@gmail.com', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8');
 
 INSERT INTO question (libelle, verif)
 VALUES
@@ -98,14 +98,14 @@ VALUES
 ('Quel est ton fruit préféré ?', false);
 
 INSERT INTO reponse (libelle, id_question) VALUES
-('Option A1', 1), ('Option B1', 1),
-('Option A2', 2), ('Option B2', 2),
-('Option A3', 3), ('Option B3', 3),
-('Option A4', 4), ('Option B4', 4),
-('Option A5', 5), ('Option B5', 5),
-('Option A6', 6), ('Option B6', 6),
-('Option A7', 7), ('Option B7', 7),
-('Option A8', 8), ('Option B8', 8),
+('PNL', 1), ('DjaDja & Dinaz', 1),
+('Oui', 2), ('Non', 2),
+('James bond', 3), ('Indiana Johns', 3),
+('Oui', 4), ('Non', 4),
+('Harry potter', 5), ('Hobbit', 5),
+('Minecraft', 6), ('LoL', 6),
+('Oui', 7), ('Non', 7),
+('Tacos', 8), ('Kebab', 8),
 ('Option A9', 9), ('Option B9', 9),
 ('Option A10', 10), ('Option B10', 10),
 ('Option A11', 11), ('Option B11', 11),
@@ -159,3 +159,5 @@ FROM ligne_reponse AS l
 WHERE id_user = 1;
 
 SELECT * FROM reponse WHERE id_question = 1;
+
+SELECT * FROM users WHERE usermail = 'benjamin.berkrouber@gmail.com' AND password = '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8';
