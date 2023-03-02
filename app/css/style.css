@@ -7,6 +7,8 @@
 
 * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 body{
@@ -105,8 +107,11 @@ div.box-question div#red{
     color: red;
 }
 
-div.box-question div.rep button{
-    background-color: #106368;
+div.box-question div.rep input{
+    background: linear-gradient(
+            #1845ad,
+            #23a2f6
+    );
     font-size: 20px;
     color: white;
     border: none;
@@ -116,12 +121,16 @@ div.box-question div.rep button{
     border-radius: 20px;
 }
 
-div.box-question div#red button{
-    background-color: red;
+div.box-question div#red input{
+    background: linear-gradient(
+            to right,
+            #b90d49,
+            #f09819
+    );
 }
 
 
-div.box-question div.rep button:hover{
+div.box-question div.rep input:hover{
     width: 70%;
     height: 100%;
     font-size: 22px;

@@ -15,13 +15,11 @@ function logUser($usermail, $userpass)
         ]
     );
 
-    echo "enter";
     if ($results->rowCount() === 1)
     {
-        echo "yesy";
         $userinfo = $results->fetch();
-        $_SESSION['id'] = $userinfo['id'];
-        $_SESSION['username'] = $userinfo['usermail'];
+        $_SESSION['userid'] = $userinfo['id_user'];
+        $_SESSION['username'] = $userinfo['username'];
         $_SESSION['usermail'] = $userinfo['usermail'];
         return $userinfo;
     }
@@ -85,8 +83,13 @@ function addUser($username,$usermail,$userpass,$userpass2)
     }
 
     if(isset($error)){echo $error;}
+}
 
+function upUser($username,$usermail){
 
+}
+
+function upPassword($password){
 
 }
 

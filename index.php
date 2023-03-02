@@ -5,14 +5,24 @@ include('app/php/functions/question.php');
 include('app/php/functions/security/user.php');
 session_start();
 
+$id_cats = get_cat();
 
-//addUser('benjamin','benjamin2.berkrouber@gmail.com','password', 'password' );
-$userinfo = logUser('benjamin.berkrouber@gmail.com', 'password');
-$question = get_question();
-$reponses = get_reponse($question['id_question']);
+if(isset($_SESSION['userid']) && isset($_GET['id_cat'])){
+    $id_cat = htmlspecialchars($_GET['id_cat']);
+    if(available_question($_SESSION['userid'], $id_cat)){
+        $id_cat = htmlspecialchars($_GET['id_cat']);
+        $question = get_question($_SESSION['userid'], $id_cat);
+        $reponses = get_reponse($question['id_question']);
+    }
+}
 
-
-//logout();
+if(isset($_POST['id_reponse'])){
+    if(isset($_POST['id_reponse']) && isset($_POST['id_question']) && !empty($_POST['id_reponse']) && !empty($_POST['id_question']) ){
+        $id_question = htmlspecialchars($_POST['id_question']);
+        $id_reponse = htmlspecialchars($_POST['id_reponse']);
+        add_reponse($_SESSION['userid'], $id_question, $id_reponse);
+    }
+}
 
 ?>
 
@@ -31,7 +41,23 @@ $reponses = get_reponse($question['id_question']);
 <?php
 
 include($_SERVER['DOCUMENT_ROOT']."/data/inc/header.php");
-include($_SERVER['DOCUMENT_ROOT']."/data/inc/view/index.view.php");
+
+if(isset($_SESSION['userid'])){
+    if(isset($_SESSION['userid']) && isset($_GET['id_cat'])){
+        if(available_question($_SESSION['userid'], $id_cat)){
+            include($_SERVER['DOCUMENT_ROOT']."/data/inc/view/question.view.php");
+        } else {
+            include ($_SERVER['DOCUMENT_ROOT']."/data/inc/view/no_question.view.php");
+        }
+    }else{
+        include ($_SERVER['DOCUMENT_ROOT']."/data/inc/view/index.view.php");
+    }
+}else{
+
+}
+
+
+
 include($_SERVER['DOCUMENT_ROOT']."/data/inc/footer.php");
 
 ?>

@@ -6,14 +6,17 @@
 
     <?php if($_SESSION){ ?>
         <div>
-            <button>user</button>
+            <a href="user.php?action=profil">profil </a>
+            <a href="user.php?action=logout">logout</a>
         </div>
+        </br>
+        <br>
     <?php } else{ ?>
         <div>
-            <a href="user.php">log</a>
+            <a href="user.php?action=login"> login</a>
+            <a href="user.php?action=register">register</a>
         </div>
     <?php } ?>
-    
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
 
