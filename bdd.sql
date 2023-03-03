@@ -54,10 +54,10 @@ VALUES
 
 INSERT INTO cat(id_cat, libelle)
 VALUES
-(1, 'ado'),
-(2, 'sport'),
-(3, 'cuisine'),
-(4, 'culture');
+(1, 'Night'),
+(2, 'Sport'),
+(3, 'Culinaire'),
+(4, 'Culture');
 
 INSERT INTO question (id_question, id_cat, libelle, verif)
 VALUES
