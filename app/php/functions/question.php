@@ -4,16 +4,14 @@ function get_question($id_user, $id_cat){
     $results = executeRequest(
         "SELECT q.id_question, q.libelle
                 FROM question q
-                WHERE q.verif = 1 
-                  AND q.id_cat = $id_cat 
-                  AND q.id_question NOT IN (
-                    SELECT lr.id_question
-                    FROM ligne_reponse lr
-                    WHERE lr.id_user = ?
-                )
+                LEFT JOIN (SELECT lr.id_question
+                           FROM ligne_reponse lr
+                           WHERE lr.id_user = ?) r
+                ON q.id_question = r.id_question
+                WHERE r.id_question IS NULL AND id_cat = ?
                 ORDER BY RAND()
-                LIMIT 1",
-        [$id_user]
+                LIMIT 1;",
+        [$id_user, $id_cat]
     );
     $results = $results->fetch();
     return $results;
@@ -42,42 +40,23 @@ function get_all_reponse_by_user($id_user){
 }
 
 function add_reponse($id_user,$id_question, $id_reponse){
-
     $results = executeRequest(
-        "SELECT * FROM ligne_reponse WHERE id_user = ? and id_question = ?",
-        [
-            $id_user, $id_question
-        ]
+        "INSERT INTO ligne_reponse(id_user,id_question,id_reponse) VALUES (?,?,?)",
+        [$id_user,$id_question,$id_reponse]
     );
-
-
-    if ($results->rowCount() >= 1)
-    {
-        $error = "Vous avez déjà répondu à cette question";
-    }else{
-        $results = executeRequest(
-            "INSERT INTO ligne_reponse(id_user,id_question,id_reponse) VALUES (?,?,?)",
-            [$id_user,$id_question,$id_reponse]
-        );
-    }
-
-    if(isset($error)){echo $error;}
 }
 
 function available_question($id_user, $id_cat){
     $results = executeRequest(
-        "SELECT distinct(q.libelle)
+        "SELECT q.id_question, q.libelle
                 FROM question q
-                    join ligne_reponse lr
-                WHERE id_user = ? 
-                  and q.verif = 1 
-                  and q.id_cat = ?
-                  and q.id_question NOT IN (
-                    SELECT lr.id_question
-                    FROM ligne_reponse lr
-                    WHERE lr.id_user = ?
-                    )",
-        [$id_user, $id_cat,  $id_user]
+                LEFT JOIN (SELECT lr.id_question
+                           FROM ligne_reponse lr
+                           WHERE lr.id_user = ?) r
+                ON q.id_question = r.id_question
+                WHERE q.id_cat = ?
+                AND r.id_question IS NULL;",
+        [$id_user, $id_cat]
     );
 
     $results = $results->rowCount();

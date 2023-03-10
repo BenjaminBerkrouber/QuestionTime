@@ -4,7 +4,6 @@ include('app/php/config.php');
 include('app/php/functions/question.php');
 include('app/php/functions/security/user.php');
 session_start();
-
 $id_cats = get_cat();
 
 if(isset($_SESSION['userid']) && isset($_GET['id_cat'])){
@@ -47,13 +46,13 @@ if(isset($_SESSION['userid'])){
         if(available_question($_SESSION['userid'], $id_cat)){
             include($_SERVER['DOCUMENT_ROOT']."/data/inc/view/question.view.php");
         } else {
-            include ($_SERVER['DOCUMENT_ROOT']."/data/inc/view/no_question.view.php");
+            include($_SERVER['DOCUMENT_ROOT']."/data/inc/view/no_question.view.php");
         }
     }else{
-        include ($_SERVER['DOCUMENT_ROOT']."/data/inc/view/index.view.php");
+        include($_SERVER['DOCUMENT_ROOT']."/data/inc/view/index.view.php");
     }
 }else{
-
+    include($_SERVER['DOCUMENT_ROOT']."/data/inc/view/index_nolog.view.php");
 }
 
 
