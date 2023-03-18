@@ -6,43 +6,44 @@ DROP TABLE IF EXISTS cat;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users(
-   id_user INT AUTO_INCREMENT,
-   username VARCHAR(100),
-   usermail VARCHAR(225),
-   password TEXT,
-   PRIMARY KEY(id_user)
+ id_user INT AUTO_INCREMENT,
+ username VARCHAR(100),
+ usermail VARCHAR(225),
+ password TEXT,
+ PRIMARY KEY(id_user)
 );
 
 CREATE TABLE cat(
-    id_cat INT AUTO_INCREMENT,
-    libelle VARCHAR(225),
-    PRIMARY KEY (id_cat)
+id_cat INT AUTO_INCREMENT,
+libelle VARCHAR(225),
+PRIMARY KEY (id_cat)
 );
 
 CREATE TABLE question(
-    id_question INT AUTO_INCREMENT,
-    id_cat INT,
-    libelle VARCHAR(225),
-    verif boolean,
-    PRIMARY KEY (id_question),
-    FOREIGN KEY (id_cat) REFERENCES cat(id_cat)
+id_question INT AUTO_INCREMENT,
+id_cat INT,
+libelle VARCHAR(225),
+verif boolean,
+PRIMARY KEY (id_question),
+FOREIGN KEY (id_cat) REFERENCES cat(id_cat)
 );
 
 CREATE TABLE reponse(
-    id_reponse INT AUTO_INCREMENT,
-    libelle VARCHAR(225),
-    id_question INT,
-    PRIMARY KEY (id_reponse),
-    FOREIGN KEY (id_question) REFERENCES question(id_question)
+id_reponse INT AUTO_INCREMENT,
+libelle VARCHAR(225),
+id_question INT,
+PRIMARY KEY (id_reponse),
+FOREIGN KEY (id_question) REFERENCES question(id_question)
 );
 
 CREATE TABLE ligne_reponse(
-    id_user INT,
-    id_question INT,
-    id_reponse INT,
-    FOREIGN KEY (id_user) REFERENCES users(id_user),
-    FOREIGN KEY (id_question) REFERENCES question(id_question),
-    FOREIGN KEY (id_reponse) REFERENCES reponse(id_reponse)
+id_user INT,
+id_question INT,
+id_reponse INT,
+FOREIGN KEY (id_user) REFERENCES users(id_user),
+FOREIGN KEY (id_question) REFERENCES question(id_question),
+FOREIGN KEY (id_reponse) REFERENCES reponse(id_reponse),
+UNIQUE (id_user, id_question)
 );
 
 INSERT INTO users (id_user, username, usermail, password)
@@ -111,7 +112,7 @@ VALUES
 (1, 'Respect universel ou pouvoir illimité ?', true),
 (1, 'Travailler sous un soleil brûlant ou un froid extrême ?', true),
 (1, 'Rester pendant une journée de neige ou construire un fort ?', true),
-(1, 'Avoir une femme de ménage personnelle ou un chef personnel ?', true),
+(1, 'Avoir une femme de ménage personnelle ou un chef personnel ?', true), /*ligne*/
 (1, 'Mesurer 11 pieds ou neuf pouces?', true),
 (1, 'Vomir sur son héros ou faire vomir son héros sur soi ?', true),
 (1, 'Prélasser au bord de la piscine ou sur la plage ?', true),
@@ -126,7 +127,8 @@ VALUES
 (1, 'Boire dans les toilettes ou uriner dans une litière ?', true),
 (1, 'Passer un an à la guerre ou un an en prison ?', true),
 (1, 'Rencontrer ses parents ou les laisser venir à sa rencontre ?', true),
-(1, 'Un troisième mamelon ou un orteil supplémentaire ?', true),
+(1, 'Un troisième mamelon ou un orteil supplémentaire ?', true);
+/*
 (1, 'Résoudre la faim dans le monde ou le réchauffement climatique', true),
 (1, 'Vivre dans une cabane dans les arbres ou dans une grotte', true),
 (1, 'Passer une année entièrement seul ou une année sans domicile', true),
@@ -239,6 +241,7 @@ VALUES
 (1, 'Une pizza ou des frites', true),
 (1, 'Avoir un hamster de compagnie ou un chat de compagnie', true),
 (1, 'Avoir 3 jambes ou 3 bras', true);
+*/
 
 INSERT INTO reponse(libelle, id_question)
 VALUES
@@ -279,24 +282,70 @@ VALUES
 ('Musique électro', 35), ('Musique pop rock', 35),
 ('Tequila', 36), ('Rhum', 36),
 ('Soirée karaoké', 37), ('Blind-test', 37),
-('Plage', 38), ('Piscine', 38);
+('Plage', 38), ('Piscine', 38),
+('Vivre le début', 39),('Vivre la fin', 39),
+('Plus d\'argent', 40),('Plus de temps', 40),
+('Vivre sans dents', 41),('Vivre sans yeux', 41),
+('Vivre sans pieds', 42),('Vivre sans mains', 42),
+('Vivre sans cheveux', 43),('Vivre sans doigts', 43),
+('Pouvoir seulement chuchoter', 44),('Pouvoir seulement crier', 44),
+('Perdre la vue', 45),('Perdre ses souvenirs', 45),
+('Respect universel', 46),('Pouvoir illimité', 46),
+('Travailler sous un soleil brûlant', 47),('Travailler sous un froid extrême', 47),
+('Rester pendant une journée de neige', 48),('Construire un fort', 48),
+('Avoir une femme de ménage personnelle', 49),('Avoir un chef personnel', 49),
+('Mesurer 11 pieds', 50),
+('Neuf pouces', 50),
+('Vomir sur son héros', 51),
+('Faire vomir son héros sur soi', 51),
+('Prélasser au bord de la piscine', 52),
+('Sur la plage', 52),
+('Câliner un koala', 53),
+('Un copain avec un panda', 53),
+('Trouver un rat dans sa cuisine', 54),
+('Un cafard dans son lit', 54),
+('Roter', 55),
+('Péter à la fin de chaque phrase prononcée', 55),
+('Un petit tatouage sur le visage', 56),
+('Un tatouage couvrant tout le dos', 56),
+('Frapper un nid de frelons', 57),
+('Un ours endormi', 57),
+('Manger de vieux sushis', 58),
+('Boire du lait périmé', 58),
+('Évanouir à son mariage', 59),
+('A sa remise de diplôme', 59),
+('Toujours avoir une batterie de téléphone pleine', 60),
+('Un réservoir d’essence plein', 60),
+('Boire dans les toilettes', 61),
+('Uriner dans une litière', 61),
+('Passer un an à la guerre', 62),
+('Un an en prison', 62),
+('Rencontrer ses parents', 63),('Les laisser venir à sa rencontre', 63),
+('Un troisième mamelon', 64),('Un orteil supplémentaire', 64)
+;
 
-/*Catégorie */
+/*insert ligne_user*/
+INSERT INTO ligne_reponse(id_user, id_question, id_reponse)
+VALUES
+(1,1,1), (1,2,1),
+(2, 1, 1), (2, 2, 2), (2, 3, 1), (2, 4, 2), (2, 5, 1), (2, 6, 1), (2, 7, 1), (2, 8, 2), (2, 9, 2), (2, 10, 1), (2, 11, 1), (2, 12, 1), (2, 13, 1), (2, 14, 2), (2, 15, 2), (2, 16, 1), (2, 17, 1), (2, 18, 1), (2, 19, 1), (2, 20, 2), (2, 21, 1), (2, 22, 2), (2, 23, 2), (2, 24, 1), (2, 25, 1), (2, 26, 2), (2, 27, 1), (2, 28, 2), (2, 29, 1), (2, 30, 2), (2, 31, 2), (2, 32, 1), (2, 33, 1), (2, 34, 2), (2, 35, 2), (2, 36, 1), (2, 37, 2), (2, 38, 1), (2, 39, 2), (2, 40, 1), (2, 41, 2), (2, 42, 2), (2, 43, 2), (2, 44, 1), (2, 45, 2), (2, 46, 1), (2, 47, 1), (2, 48, 1), (2, 49, 2), (2, 50, 1), (2, 51, 1), (2, 52, 1), (2, 53, 1), (2, 54, 1), (2, 55, 1), (2, 56, 1), (2, 57, 1), (2, 58, 1), (2, 59, 1), (2, 60, 1), (2, 61, 1), (2, 62, 1), (2, 63, 1), (2, 64, 1),
+(3, 1, 2), (3, 2, 1), (3, 3, 2), (3, 4, 1), (3, 5, 2), (3, 6, 2), (3, 7, 2), (3, 8, 1), (3, 9, 1), (3, 10, 2), (3, 11, 2), (3, 12, 2), (3, 13, 2), (3, 14, 1), (3, 15, 1), (3, 16, 2), (3, 17, 2), (3, 18, 2), (3, 19, 2), (3, 20, 1), (3, 21, 2), (3, 22, 1), (3, 23, 1), (3, 24, 2), (3, 25, 2), (3, 26, 1), (3, 27, 2), (3, 28, 1), (3, 29, 2), (3, 30, 1), (3, 31, 1);
+
 
 SELECT count(lr1.id_reponse) as nbr_vote,
-       count(lr2.id_reponse) as nbr_vote,
-       r.id_question
+ count(lr2.id_reponse) as nbr_vote,
+ r.id_question
 FROM ligne_reponse lr1
-    join reponse r on lr1.id_reponse = r.id_reponse
-    join ligne_reponse lr2 on lr2.id_reponse = r.id_reponse
-    join question q on r.id_question = q.id_question
+join reponse r on lr1.id_reponse = r.id_reponse
+join ligne_reponse lr2 on lr2.id_reponse = r.id_reponse
+join question q on r.id_question = q.id_question
 WHERE q.id_question = 1 and lr2.id_reponse = 1;
 
 
 SELECT q.id_question, q.libelle AS question, r.id_reponse, r.libelle AS reponse, COUNT(lr.id_reponse) AS nbr_vote
 FROM ligne_reponse lr
-    JOIN reponse r ON lr.id_reponse = r.id_reponse
-    JOIN question q ON r.id_question = q.id_question
+JOIN reponse r ON lr.id_reponse = r.id_reponse
+JOIN question q ON r.id_question = q.id_question
 GROUP BY q.id_question, r.id_reponse
 ORDER BY q.id_question, r.id_reponse;
 
@@ -306,41 +355,41 @@ SELECT * FROM reponse WHERE id_question = 1;
 
 SELECT q.libelle AS question, r.libelle AS reponse
 FROM ligne_reponse lr
-    JOIN question q ON lr.id_question = q.id_question
-    JOIN reponse r ON lr.id_reponse = r.id_reponse
+JOIN question q ON lr.id_question = q.id_question
+JOIN reponse r ON lr.id_reponse = r.id_reponse
 WHERE lr.id_user = 1;
 
 SELECT q.id_question, q.libelle
 FROM question q
 WHERE q.verif = 1 AND q.id_question NOT IN (
-    SELECT lr.id_question
-    FROM ligne_reponse lr
-    WHERE lr.id_user = 5
+SELECT lr.id_question
+FROM ligne_reponse lr
+WHERE lr.id_user = 5
 )
 ORDER BY RAND()
 ;
 
 SELECT COUNT(distinct(q.libelle))
 FROM question q
-    join ligne_reponse lr
+join ligne_reponse lr
 WHERE id_user = 5 and q.verif = 1 and q.id_question NOT IN (
-    SELECT lr.id_question
-    FROM ligne_reponse lr
-    WHERE lr.id_user = 5
-    );
+SELECT lr.id_question
+FROM ligne_reponse lr
+WHERE lr.id_user = 5
+);
 
 SELECT * from ligne_reponse where id_user = 5;
 
 SELECT distinct(q.libelle)
 FROM question q
-    join ligne_reponse lr
+join ligne_reponse lr
 WHERE id_user = 1
-  and q.verif = 1
-  and q.id_cat = 2
-    and q.id_question NOT IN (
-    SELECT lr.id_question
-    FROM ligne_reponse lr
-    WHERE lr.id_user = 1
+and q.verif = 1
+and q.id_cat = 2
+and q.id_question NOT IN (
+SELECT lr.id_question
+FROM ligne_reponse lr
+WHERE lr.id_user = 1
 );
 
 
@@ -348,8 +397,8 @@ WHERE id_user = 1
 SELECT q.id_question, q.libelle
 FROM question q
 LEFT JOIN (SELECT lr.id_question
-           FROM ligne_reponse lr
-           WHERE lr.id_user = 5) r
+ FROM ligne_reponse lr
+ WHERE lr.id_user = 5) r
 ON q.id_question = r.id_question
 WHERE q.id_cat = 4
 AND r.id_question IS NULL;
@@ -359,8 +408,8 @@ AND r.id_question IS NULL;
 SELECT q.id_question, q.libelle
 FROM question q
 LEFT JOIN (SELECT lr.id_question
-           FROM ligne_reponse lr
-           WHERE lr.id_user = 6) r
+ FROM ligne_reponse lr
+ WHERE lr.id_user = 6) r
 ON q.id_question = r.id_question
 WHERE q.id_cat = 1
 AND r.id_question IS NULL
@@ -372,11 +421,18 @@ select * FROM ligne_reponse where id_user = 1;
 SELECT count(id_question) FROM question;
 
 SELECT count(q.id_question)
-                FROM question q
-                LEFT JOIN (SELECT lr.id_question
-                           FROM ligne_reponse lr
-                           WHERE lr.id_user = 1) r
-                ON q.id_question = r.id_question
-                WHERE r.id_question IS NULL AND id_cat = 1
-                ORDER BY RAND()
-               ;
+FROM question q
+LEFT JOIN (SELECT lr.id_question
+ FROM ligne_reponse lr
+ WHERE lr.id_user = 1) r
+ON q.id_question = r.id_question
+WHERE r.id_question IS NULL AND id_cat = 1
+ORDER BY RAND()
+;
+
+SELECT
+  id_question,
+  ROUND((SUM(CASE WHEN id_reponse = 1 THEN 1 ELSE 0 END) / COUNT(*)) * 100) AS percentage_reponse_1,
+  ROUND((SUM(CASE WHEN id_reponse = 2 THEN 1 ELSE 0 END) / COUNT(*)) * 100) AS percentage_reponse_2
+FROM ligne_reponse
+WHERE id_question = 3;

@@ -72,3 +72,17 @@ function get_cat(){
     $results = $results->fetchAll();
     return $results;
 }
+
+function get_percent($id_question){
+    $results = executeRequest(
+        "SELECT
+                  ROUND((SUM(CASE WHEN id_reponse = 1 THEN 1 ELSE 0 END) / COUNT(*)) * 100) AS pr_1,
+                  ROUND((SUM(CASE WHEN id_reponse = 2 THEN 1 ELSE 0 END) / COUNT(*)) * 100) AS pr_2
+                FROM ligne_reponse
+                WHERE id_question = ?
+                GROUP BY id_question;",
+        [$id_question]
+    );
+    $results = $results->fetch();
+    return $results;
+}

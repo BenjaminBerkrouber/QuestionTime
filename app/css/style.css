@@ -211,3 +211,91 @@ div.box-cats div.box div.box-cat a.active:hover{
     transform: translateY(-1em);
 }
 
+div.box-pr{
+    width: 50%;
+    height: 10vh;
+    margin: auto;
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.box-pr div{
+    background: transparent;
+    height: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+div.box-pr div.pr2{
+    height: 100%;
+}
+
+.jauge-remplissage3 {
+    transition: all 0.4s linear 0s;
+    background: linear-gradient(
+            to right,
+            #b90d49,
+            #f09819
+    );
+    width: 0;
+    height: 10vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.jauge-remplissage4 {
+    transition: all 0.4s linear 0s;
+    background: linear-gradient(
+            #1845ad,
+            #23a2f6
+    );
+    width: 0;
+    height: 10vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 10px 0px 0px 10px;
+}
+.jauge-text {
+    z-index: 10;
+}
+
+
+/* Remplissage gauche et droite */
+.jauge-remplissage5-1 {
+    transition: all 0.3s linear 0s;
+    background: linear-gradient(
+            #1845ad,
+            #23a2f6
+    );
+    width: 0;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.jauge-remplissage5-2 {
+    transition: all 0.3s linear 0s;
+    background: linear-gradient(
+            #1845ad,
+            #23a2f6
+    );
+    width: 0;
+    height: 100%;
+    position: absolute;
+    right: 50%;
+    top: 0;
+    border-radius: 10px 0px 0px 10px;
+
+}
